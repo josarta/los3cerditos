@@ -34,7 +34,7 @@ public class Cerdo extends Animal {
     }
 
     public String cantar() {
-        return "Quiene le tema al lobo feroz cantado por " + super.getNombre() + " con su personalidad " + super.getPersonalidad();
+        return "Quien le teme al lobo feroz cantado por " + super.getNombre() + " con su personalidad " + super.getPersonalidad();
 
     }
 

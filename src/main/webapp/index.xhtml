@@ -1,27 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Los 3 Cerditos</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"></link>
+
+
+       <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     </h:head>
     <h:body>
 
-        <div class="container" style="margin-top: 30px">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Crear casa
-            </button>
+        <div class="container" >
 
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleCerdo">
-                Cerdo
-            </button>
-            
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleLobo">
-               Lobo
-            </button>
-            
+            <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Crear casa
+                </button>
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleCerdo">
+                    Cerdo
+                </button>
+
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleLobo">
+                    Lobo
+                </button>
+
+            </div>
+
+
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,45 +44,46 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <h:form>
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="formMaterial">Material</label>
-                                    <select class="form-control" id="formMaterial">
-                                        <option>Paja</option>
-                                        <option>Madera</option>
-                                        <option>Ladrillo</option>
-                                    </select>
+
+                                    <h:selectOneMenu value="#{gestionCasaView.casaNueva.material}"  class="form-control" id="formMaterial">
+                                        <f:selectItem itemLabel="Paja" itemValue="Paja"/>
+                                        <f:selectItem itemLabel="Madera" itemValue="Madera"/>
+                                        <f:selectItem itemLabel="Ladrillo" itemValue="Ladrillo"/>
+                                    </h:selectOneMenu>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="formResistencia">Resistencia</label>
-                                    <select class="form-control" id="formResistencia">
-                                        <option>Alta</option>
-                                        <option>Media</option>
-                                        <option>Baja</option>
-                                    </select>
+                                    <h:selectOneMenu value="#{gestionCasaView.casaNueva.resistencia}"  class="form-control" id="formResistencia">
+                                        <f:selectItem itemLabel="Alta" itemValue="Alta"/>
+                                        <f:selectItem itemLabel="Media" itemValue="Media"/>
+                                        <f:selectItem itemLabel="Baja" itemValue="Baja"/>
+                                    </h:selectOneMenu>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="formTamanio">Tamaño</label>
-                                    <select class="form-control" id="formTamanio">
-                                        <option>Grande</option>
-                                        <option>Mediana</option>
-                                        <option>Paqueña</option>
-                                    </select>
+                                    <h:selectOneMenu value="#{gestionCasaView.casaNueva.tamanio}" class="form-control" id="formTamanio">
+                                        <f:selectItem itemLabel="Grande" itemValue="Grande"/>
+                                        <f:selectItem itemLabel="Mediana" itemValue="Mediana"/>
+                                        <f:selectItem itemLabel="Paqueña" itemValue="Paqueña"/>
+                                    </h:selectOneMenu>
                                 </div>
 
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar</button>
+                                <h:commandButton action="#{gestionCasaView.adicionarCasa()}" class="btn btn-primary" value="Guardar" />
                             </div>
 
-                        </form>
+                        </h:form>
                     </div>
                 </div>
             </div>
@@ -87,53 +99,51 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <h:form>
                             <div class="modal-body">
 
                                 <div class="form-group">
                                     <label for="exampleNombre">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleNombre" placeholder="pedro perez"/>
+                                    <h:inputText class="form-control" id="exampleNombre" html5:placeholder="pedro perez"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="examplePersonalidad">Personalidad</label>
-                                    <input type="text" class="form-control" id="examplePersonalidad" placeholder="Mal geniado, alegre, triste ....."/>
+                                    <h:inputText class="form-control" id="examplePersonalidad" html5:placeholder="Mal geniado, alegre, triste ....."/>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="exampleVestimaneta">Vestimenta</label>
-                                    <input type="text" class="form-control" id="exampleVestimaneta" placeholder="Pantalon largo, con corbata ...."/>
+                                    <h:inputText class="form-control" id="exampleVestimaneta" html5:placeholder="Pantalon largo, con corbata ...."/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInstrumento">Instrumento</label>
-                                    <input type="text" class="form-control" id="exampleInstrumento" placeholder="Piano , Maracas, Flauta , Violin  ...."/>
+                                    <h:inputText class="form-control" id="exampleInstrumento" html5:placeholder="Piano , Maracas, Flauta , Violin  ...."/>
                                 </div>
-                                
-                               
-                                 <div class="form-group">
+
+
+                                <div class="form-group">
                                     <label for="formCasa">Casa</label>
-                                    <select class="form-control" id="formCasa">
-                                        <option>Paja</option>
-                                        <option>Madera</option>
-                                        <option>Ladrillo</option>
-                                    </select>
+                                    <h:selectOneMenu class="form-control" id="formCasa">
+                                        <f:selectItems value="#{gestionCasaView.listaCasas}" var="lcasa" itemLabel="#{lcasa.material}" itemValue="#{lcasa.material}"  ></f:selectItems>
+                                    </h:selectOneMenu>
                                 </div>
-                                
+
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar</button>
+                                <h:commandButton class="btn btn-primary" value="Guardar"/>
                             </div>
-                        </form>
+                        </h:form>
                     </div>
                 </div>
             </div>
 
 
-             <!-- Modal -->
+            <!-- Modal -->
             <div class="modal fade" id="exampleLobo" tabindex="-1" aria-labelledby="exampleLobo" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -143,45 +153,95 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <h:form>
                             <div class="modal-body">
 
                                 <div class="form-group">
                                     <label for="exampleNombre">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleNombre" placeholder="pedro perez"/>
+                                    <h:inputText class="form-control" id="exampleNombre" html5:placeholder="pedro perez"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="examplePersonalidad">Personalidad</label>
-                                    <input type="text" class="form-control" id="examplePersonalidad" placeholder="Mal geniado, alegre, triste ....."/>
+                                    <h:inputText class="form-control" id="examplePersonalidad" html5:placeholder="Mal geniado, alegre, triste ....."/>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="exampleVestimaneta">Vestimenta</label>
-                                    <input type="text" class="form-control" id="exampleVestimaneta" placeholder="Pantalon largo, con corbata ...."/>
+                                    <h:inputText class="form-control" id="exampleVestimaneta" html5:placeholder="Pantalon largo, con corbata ...."/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleFuerza">Fuerza</label>
-                                    <input type="text" class="form-control" id="exampleFuerza" placeholder="Mucha , Poca , Limitada ...."/>
+                                    <h:inputText class="form-control" id="exampleFuerza" html5:placeholder="Mucha , Poca , Limitada ...."/>
                                 </div>
-                                
-                               
-                                 
-                                
+
+
+
+
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar</button>
+                                <h:commandButton class="btn btn-primary" value="Guardar"/>
                             </div>
-                        </form>
+                        </h:form>
                     </div>
                 </div>
             </div>
 
 
+            <div class="row">
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Casas</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cerdos</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Lobos</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                            <table class="table table-bordered table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Material</th>
+                                        <th scope="col">Resistencia</th>
+                                        <th scope="col">Tamaño</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <h:form>
+                                        <c:forEach items="#{gestionCasaView.listaCasas}" var="casaR" varStatus="pos">
+                                            <tr>
+                                                <th scope="row">#{pos.index + 1}</th>
+                                                <td> <img height="64" width="64" src="img/#{casaR.material}.png"></img>  </td>
+                                                <td>#{casaR.material}</td>
+                                                <td>#{casaR.resistencia}</td>
+                                                <td>#{casaR.tamanio}</td>
+                                                <td>
+
+                                                    <h:commandButton action="#{gestionCasaView.removerCasa(pos.index)}" class="btn btn-danger" value="X"/>   
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </h:form>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
